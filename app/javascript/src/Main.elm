@@ -5,21 +5,7 @@ import Html.Attributes exposing (class)
 import Http
 import Json.Decode
 import List.Split
-
-
--- MODEL
-
-
-type alias Article =
-    { id : Int
-    , title : String
-    , body : String
-    }
-
-
-type alias Model =
-    { articles : List Article }
-
+import ElmBlog.Model exposing (Model, Article)
 
 
 -- INIT
