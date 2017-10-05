@@ -1,9 +1,10 @@
-module Main exposing (..)
+module Main exposing (main)
 
-import Html exposing (Html, div, h1, text)
-import Html.Attributes exposing (style)
+import Html exposing (Html, div, h1, h4, text)
+import Html.Attributes exposing (class)
 import Http
 import Json.Decode
+import List.Split
 
 
 -- MODEL
@@ -33,14 +34,34 @@ init =
 -- VIEW
 
 
+viewArticle : Article -> Html Message
+viewArticle article =
+    div [ class "card" ]
+        [ div [ class "card-body" ]
+            [ h4 [ class "card-title" ] [ text article.title ]
+            , div [] [ text article.body ]
+            ]
+        ]
+
+
+viewArticlesRow : List Article -> Html Message
+viewArticlesRow articles =
+    div [ class "row articles-row" ]
+        (List.map (\x -> div [ class "col-6" ] [ viewArticle x ]) articles)
+
+
+viewArticles : List Article -> Html Message
+viewArticles articles =
+    List.Split.chunksOfLeft 2 articles
+        |> List.map viewArticlesRow
+        |> div []
+
+
 view : Model -> Html Message
-view { articles } =
-    -- The inline style is being used for example purposes in order to keep this example simple and
-    -- avoid loading additional resources. Use a proper stylesheet when building your own app.
-    div []
-        [ h1 [ style [ ( "display", "flex" ), ( "justify-content", "center" ) ] ]
-            [ text "Elm Blog" ]
-        , div [] [ text ("ArticlesLoaded count: " ++ (toString (List.length articles))) ]
+view model =
+    div [ class "container" ]
+        [ h1 [ class "blog-title" ] [ text "Elm Blog" ]
+        , viewArticles model.articles
         ]
 
 

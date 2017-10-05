@@ -1,1 +1,10 @@
 @import "bootstrap";
+
+.blog-title {
+  display: flex;
+  justify-content: center;
+}
+
+.articles-row {
+  margin-bottom: 15px;
+}
