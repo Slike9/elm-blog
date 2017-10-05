@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'bootstrap', '~> 4.0.0.beta'
 gem 'kaminari'
 
 group :development, :test do
