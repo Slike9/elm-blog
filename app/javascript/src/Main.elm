@@ -4,8 +4,8 @@ import Html exposing (Html, div, h1, h4, text)
 import Html.Attributes exposing (class)
 import Http
 import Json.Decode
-import List.Split
 import ElmBlog.Model exposing (Model, Article)
+import ElmBlog.List
 
 
 -- INIT
@@ -38,7 +38,7 @@ viewArticlesRow articles =
 
 viewArticles : List Article -> Html Message
 viewArticles articles =
-    List.Split.chunksOfLeft 2 articles
+    ElmBlog.List.chunksOfLeft 2 articles
         |> List.map viewArticlesRow
         |> div []
 
