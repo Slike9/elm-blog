@@ -1,8 +1,14 @@
-module Model exposing (Model, Article)
+module Model exposing (Model, Route(..), Article)
 
 
 type alias Model =
-    { articles : List Article }
+    { articles : List Article, route : Route }
+
+
+type Route
+    = ArticlesRoute
+    | NewArticleRoute
+    | NotFound
 
 
 type alias Article =

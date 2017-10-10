@@ -7,4 +7,6 @@ Rails.application.routes.draw do
       resources :articles, only: [:index]
     end
   end
+
+  get '*path', to: 'web/welcome#index'
 end

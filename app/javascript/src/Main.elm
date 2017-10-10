@@ -1,20 +1,21 @@
 module Main exposing (main)
 
-import Html exposing (Html, div, h1, h4, text)
 import Http
 import Json.Decode
+import Navigation
 import Model exposing (Model, Article)
 import Message exposing (Message(..))
 import View exposing (view)
 import Update exposing (update)
+import Routing
 
 
 -- INIT
 
 
-init : ( Model, Cmd Message )
-init =
-    ( { articles = [] }, loadArticles )
+init : Navigation.Location -> ( Model, Cmd Message )
+init location =
+    ( { articles = [], route = Routing.parseLocation location }, loadArticles )
 
 
 loadArticles : Cmd Message
@@ -54,7 +55,7 @@ subscriptions model =
 
 main : Program Never Model Message
 main =
-    Html.program
+    Navigation.program UrlChange
         { init = init
         , view = view
         , update = update
