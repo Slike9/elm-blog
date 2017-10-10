@@ -1,11 +1,12 @@
 module Main exposing (main)
 
 import Html exposing (Html, div, h1, h4, text)
-import Html.Attributes exposing (class)
 import Http
 import Json.Decode
-import ElmBlog.Model exposing (Model, Article)
-import ElmBlog.List
+import Model exposing (Model, Article)
+import Message exposing (Message(..))
+import View exposing (view)
+import Update exposing (update)
 
 
 -- INIT
@@ -14,49 +15,6 @@ import ElmBlog.List
 init : ( Model, Cmd Message )
 init =
     ( { articles = [] }, loadArticles )
-
-
-
--- VIEW
-
-
-viewArticle : Article -> Html Message
-viewArticle article =
-    div [ class "card" ]
-        [ div [ class "card-body" ]
-            [ h4 [ class "card-title" ] [ text article.title ]
-            , div [] [ text article.body ]
-            ]
-        ]
-
-
-viewArticlesRow : List Article -> Html Message
-viewArticlesRow articles =
-    div [ class "row articles-row" ]
-        (List.map (\x -> div [ class "col-6" ] [ viewArticle x ]) articles)
-
-
-viewArticles : List Article -> Html Message
-viewArticles articles =
-    ElmBlog.List.chunksOfLeft 2 articles
-        |> List.map viewArticlesRow
-        |> div []
-
-
-view : Model -> Html Message
-view model =
-    div [ class "container" ]
-        [ h1 [ class "blog-title" ] [ text "Elm Blog" ]
-        , viewArticles model.articles
-        ]
-
-
-
--- MESSAGE
-
-
-type Message
-    = ArticlesLoaded (Result Http.Error (List Article))
 
 
 loadArticles : Cmd Message
@@ -79,20 +37,6 @@ decodeArticle =
 decodeArticles : Json.Decode.Decoder (List Article)
 decodeArticles =
     Json.Decode.list decodeArticle
-
-
-
--- UPDATE
-
-
-update : Message -> Model -> ( Model, Cmd Message )
-update message model =
-    case message of
-        ArticlesLoaded (Ok articles) ->
-            ( { model | articles = articles }, Cmd.none )
-
-        ArticlesLoaded (Err _) ->
-            ( model, Cmd.none )
 
 
 

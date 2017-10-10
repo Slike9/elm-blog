@@ -1,4 +1,4 @@
-module ElmBlog.List exposing (chunksOfLeft)
+module Lib.List exposing (chunksOfLeft)
 
 
 chunksOfLeft : Int -> List a -> List (List a)

@@ -1,4 +1,4 @@
-module ElmBlog.Model exposing (Model, Article)
+module Model exposing (Model, Article)
 
 
 type alias Model =
