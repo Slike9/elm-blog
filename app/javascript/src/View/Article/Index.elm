@@ -28,7 +28,7 @@ viewToolbar : Html Message
 viewToolbar =
     div [ class "btn-toolbar" ]
         [ div [ class "btn-group" ]
-            [ button [ class "btn btn-link", onClick (NewUrl "/articles/new") ] [ text "New Article" ] ]
+            [ button [ class "btn btn-primary", onClick (NewUrl "/articles/new") ] [ text "New Article" ] ]
         ]
 
 
@@ -38,5 +38,5 @@ view model =
         [ viewToolbar
         , Lib.List.chunksOfLeft 2 model.articles
             |> List.map viewArticlesRow
-            |> div []
+            |> div [ class "articles" ]
         ]

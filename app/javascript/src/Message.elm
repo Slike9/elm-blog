@@ -9,3 +9,7 @@ type Message
     = ArticlesLoaded (Result Http.Error (List Article))
     | UrlChange Navigation.Location
     | NewUrl String
+    | ChangeNewArticleTitle String
+    | ChangeNewArticleText String
+    | SaveNewArticle
+    | ArticleCreated (Result Http.Error Article)
