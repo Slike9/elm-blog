@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'bootstrap', '~> 4.0.0.beta'
+gem 'font-awesome-rails'
 gem 'kaminari'
 
 group :development, :test do
