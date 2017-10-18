@@ -15,7 +15,7 @@ import Routing
 
 init : Navigation.Location -> ( Model, Cmd Message )
 init location =
-    ( Model.init (Routing.parseLocation location), loadArticles )
+    ( Model.init (Routing.parseLocation location) location, loadArticles )
 
 
 loadArticles : Cmd Message

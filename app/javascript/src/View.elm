@@ -6,6 +6,7 @@ import Model exposing (Model, Route(..))
 import Message exposing (Message)
 import View.Article.Index
 import View.Article.New
+import View.Article.Edit
 import View.NotFound
 
 
@@ -19,6 +20,14 @@ view model =
 
             NewArticleRoute ->
                 View.Article.New.view model
+
+            EditArticleRoute _ ->
+                case model.editArticle of
+                    Just article ->
+                        View.Article.Edit.view article
+
+                    Nothing ->
+                        div [] [ text "Loading..." ]
 
             NotFound ->
                 View.NotFound.view model

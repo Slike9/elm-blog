@@ -1,6 +1,6 @@
 module View.Article.Index exposing (view)
 
-import Html exposing (Html, div, h1, h4, text, button)
+import Html exposing (Html, div, h1, h4, text, button, i, a)
 import Html.Attributes exposing (class, href)
 import Html.Events exposing (onClick)
 import Model exposing (Model, Article)
@@ -14,6 +14,15 @@ viewArticle article =
         [ div [ class "card-body" ]
             [ h4 [ class "card-title" ] [ text article.title ]
             , div [] [ text article.body ]
+            , button
+                [ class "btn btn-link" ]
+                [ a
+                    [ href "javascript: void(0)"
+                    , class "fa fa-pencil"
+                    , onClick (NewUrl <| "/articles/" ++ toString article.id ++ "/edit")
+                    ]
+                    []
+                ]
             ]
         ]
 

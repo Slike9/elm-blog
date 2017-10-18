@@ -13,3 +13,6 @@ type Message
     | ChangeNewArticleText String
     | SaveNewArticle
     | ArticleCreated (Result Http.Error Article)
+    | ChangeEditArticle Article
+    | SaveEditArticle
+    | ArticleUpdated (Result Http.Error Article)
